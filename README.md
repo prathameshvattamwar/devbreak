@@ -90,7 +90,7 @@ This project is open source and available for personal and commercial use.
 
 ## Author
 
-[Your Name] - Feel free to contribute and improve the project!
+Prathamesh - Feel free to contribute and improve the project!
 
 ---
 

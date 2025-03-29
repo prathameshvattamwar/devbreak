@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBreak - Mini Games for Developers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="theme-toggle">
+            <input type="checkbox" id="theme-toggle" />
+            <div class="slider round">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </div>
+        </label>
+    </div>
+
+    <div class="container">
+        <header class="animate__animated animate__fadeInDown">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-gamepad"></i></span>
+                <h1>DevBreak</h1>
+            </div>
+            <p>Take a break, play a game, refresh your mind</p>
+            <div class="controls">
+                <button id="sound-toggle" class="control-btn" aria-label="Toggle sound">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button id="fullscreen-toggle" class="control-btn" aria-label="Toggle fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button id="settings-toggle" class="control-btn" aria-label="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="search-filter-container">
+            <div class="search-bar">
+                <input type="text" id="game-search" placeholder="Search games...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="word">Word</button>
+                <button class="filter-btn" data-filter="memory">Memory</button>
+                <button class="filter-btn" data-filter="reflex">Reflex</button>
+                <button class="filter-btn" data-filter="puzzle">Puzzle</button>
+            </div>
+        </div>
+
+        <main id="game-collection">
+            <!-- Game cards will be added here dynamically -->
+        </main>
+
+        <div id="game-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title-wrapper">
+                        <h2 id="modal-title">Game Title</h2>
+                        <span class="difficulty-badge" id="modal-difficulty">Medium</span>
+                    </div>
+                    <div class="modal-controls">
+                        <button id="pause-btn" class="modal-control-btn" aria-label="Pause game">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button id="restart-btn" class="modal-control-btn" aria-label="Restart game">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                        <button id="close-modal" class="modal-control-btn" aria-label="Close game">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="modal-body"></div>
+                <div class="modal-footer">
+                    <div class="game-meta">
+                        <div id="game-score" class="meta-item">
+                            <i class="fas fa-star"></i>
+                            <span id="score-value">0</span>
+                        </div>
+                        <div id="game-timer" class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span id="timer-value">0:00</span>
+                        </div>
+                        <div id="game-level" class="meta-item">
+                            <i class="fas fa-layer-group"></i>
+                            <span id="level-value">1</span>
+                        </div>
+                    </div>
+                    <div class="game-actions">
+                        <button id="share-score" class="action-btn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                        <button id="leaderboard-btn" class="action-btn">
+                            <i class="fas fa-trophy"></i> Leaderboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="settings-panel" class="settings-panel">
+            <div class="settings-header">
+                <h3>Settings</h3>
+                <button id="close-settings" class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="settings-body">
+                <div class="setting-group">
+                    <h4>Sound</h4>
+                    <div class="setting-control">
+                        <label for="sound-volume">Volume</label>
+                        <input type="range" id="sound-volume" min="0" max="100" value="80">
+                    </div>
+                    <div class="setting-control">
+                        <label for="mute-effects">Mute Effects</label>
+                        <label class="toggle">
+                            <input type="checkbox" id="mute-effects">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-control">
+                        <label for="mute-music">Mute Music</label>
+                        <label class="toggle">
+                            <input type="checkbox" id="mute-music">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h4>Display</h4>
+                    <div class="setting-control">
+                        <label for="animations">Animations</label>
+                        <label class="toggle">
+                            <input type="checkbox" id="animations" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-control">
+                        <label for="high-contrast">High Contrast</label>
+                        <label class="toggle">
+                            <input type="checkbox" id="high-contrast">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h4>Gameplay</h4>
+                    <div class="setting-control">
+                        <label for="difficulty">Default Difficulty</label>
+                        <select id="difficulty">
+                            <option value="easy">Easy</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-footer">
+                <button id="reset-settings">Reset to Default</button>
+                <button id="save-settings" class="primary-btn">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification">
+        <i class="notification-icon"></i>
+        <div class="notification-content">
+            <p class="notification-message"></p>
+        </div>
+        <button class="notification-close"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div id="leaderboard-modal" class="modal">
+        <div class="modal-content leaderboard-content">
+            <div class="modal-header">
+                <h2>Leaderboard</h2>
+                <button class="modal-control-btn close-leaderboard">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="leaderboard-body">
+                <div class="leaderboard-tabs">
+                    <button class="leaderboard-tab active" data-timeframe="daily">Daily</button>
+                    <button class="leaderboard-tab" data-timeframe="weekly">Weekly</button>
+                    <button class="leaderboard-tab" data-timeframe="alltime">All Time</button>
+                </div>
+                <div class="leaderboard-list">
+                    <!-- Leaderboard entries go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="confetti-container" id="confetti-container"></div>
+    
+    <div class="mobile-controls">
+        <button class="mobile-control-btn" id="up-btn"><i class="fas fa-arrow-up"></i></button>
+        <div class="mobile-control-row">
+            <button class="mobile-control-btn" id="left-btn"><i class="fas fa-arrow-left"></i></button>
+            <button class="mobile-control-btn" id="down-btn"><i class="fas fa-arrow-down"></i></button>
+            <button class="mobile-control-btn" id="right-btn"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 DevBreak - Mini Games for Developers</p>
+            <div class="footer-links">
+                <a href="#">Help</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Game-specific scripts will be loaded dynamically -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/confetti-js/0.0.18/confetti.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
